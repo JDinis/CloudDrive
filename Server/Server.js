@@ -14,6 +14,10 @@ app.listen(process.env.PORT||3001,()=>{
     console.log(`Node listening on port: ${process.env.PORT||3001}`);
 });
 
+app.get('/*',(req,res)=>{
+    app.sendFile('index.html')
+})
+
 app.post("/backend/file",(req,res)=>{
     var form = new multiparty.Form();
     form.parse(req,(err,fields,files)=>{
