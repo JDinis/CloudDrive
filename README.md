@@ -21,4 +21,4 @@ The build is minified and the filenames include the hashes.<br>
 Check the deployment scripts here: https://github.com/ulrikstrid/azure-appservice-static
 And iisnode.yml (file in which we define default node version) + web.config at the bottom of this page: https://medium.com/@skoob13/deploying-react-app-with-node-js-rest-api-on-azure-9b389251150a
 
-## This project has No License by Choice ❗❕❗
+## This project has [No License](https://choosealicense.com/no-permission/) by Choice ❗❕❗
