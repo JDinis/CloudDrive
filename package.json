@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "10.14.1"
+    "node": "10.10.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
