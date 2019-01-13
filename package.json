@@ -16,7 +16,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
+  "browserslistx": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
