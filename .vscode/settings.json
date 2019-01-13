@@ -3,5 +3,5 @@
         "node_modules{,/**}"
     ],
     "appService.deploySubpath": "",
-    "appService.defaultWebAppToDeploy": "/subscriptions/e1a37416-a3e5-42ba-8aed-aa56641bfeac/resourceGroups/appsvc_rg_windows_centralus/providers/Microsoft.Web/sites/CloudDrive",
+    "appService.defaultWebAppToDeploy": "/subscriptions/e1a37416-a3e5-42ba-8aed-aa56641bfeac/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/CloudDrive",
 }
