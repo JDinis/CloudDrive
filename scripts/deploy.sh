@@ -102,8 +102,9 @@ echo Handling node.js deployment.
 # 1. Select node version
 selectNodeVersion
 
-# 2. Install npm packages
+# 2. Deleting old npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  echo "Deleting old npm packages"
   cd "$DEPLOYMENT_SOURCE"
   rm -rf node_modules/*/*/*/*/*/*/*/*/*
   rm -rf node_modules/*/*/*/*/*/*/*/*
@@ -116,6 +117,7 @@ if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   rm -rf node_modules/*
   rm -rf node_modules
   exitWithMessageOnError "node_module removal failed"
+  echo "Finished deleting old npm packages"
   cd - > /dev/null
 fi
 
@@ -125,6 +127,7 @@ if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
   eval $NPM_CMD install react-scripts react react-dom redux redux-thunk react-router react-router-dom --save --production
   exitWithMessageOnError "npm failed"
+  echo "Finished installing npm packages part 1"
   cd - > /dev/null
 fi
 
@@ -134,6 +137,7 @@ if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
   eval $NPM_CMD install
   exitWithMessageOnError "npm failed"
+  echo "Finished installing npm packages part 2"
   cd - > /dev/null
 fi
 
@@ -144,6 +148,7 @@ if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   eval $NPM_CMD build
   cp -rf "$DEPLOYMENT_SOURCE/build" "$DEPLOYMENT_TARGET/"
   exitWithMessageOnError "build failed"
+  echo "Finished building CloudDrive"
   cd - > /dev/null
 fi
 
