@@ -1,3 +1,2 @@
 [config]
-command = deploy.cmd
-SCM_POST_DEPLOYMENT_ACTION = scripts\deploy.cmd
+command = scripts\deploy.cmd
