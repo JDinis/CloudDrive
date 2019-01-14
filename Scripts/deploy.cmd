@@ -107,6 +107,9 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\node_modules"
   call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.vscode"
   call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.github"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\public"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\scripts"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.git"
   popd
 )
 
