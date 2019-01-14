@@ -145,7 +145,7 @@ fi
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   echo "Building CloudDrive"
   cd "$DEPLOYMENT_SOURCE"
-  eval $NPM_CMD build
+  eval $NPM_CMD run build
   cp -rf "$DEPLOYMENT_SOURCE/build" "$DEPLOYMENT_TARGET/"
   exitWithMessageOnError "build failed"
   echo "Finished building CloudDrive"
