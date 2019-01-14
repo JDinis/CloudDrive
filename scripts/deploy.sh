@@ -105,6 +105,24 @@ selectNodeVersion
 # 2. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
+  rm -rf node_modules/*/*/*/*/*/*/*/*/*
+  rm -rf node_modules/*/*/*/*/*/*/*/*
+  rm -rf node_modules/*/*/*/*/*/*/*
+  rm -rf node_modules/*/*/*/*/*/*
+  rm -rf node_modules/*/*/*/*/*
+  rm -rf node_modules/*/*/*/*
+  rm -rf node_modules/*/*/*
+  rm -rf node_modules/*/*
+  rm -rf node_modules/*
+  rm -rf node_modules
+  exitWithMessageOnError "node_module removal failed"
+  cd - > /dev/null
+fi
+
+# 2. Install npm packages
+if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  echo "Installing npm packages part 1"
+  cd "$DEPLOYMENT_SOURCE"
   eval $NPM_CMD install react-scripts react react-dom redux redux-thunk react-router react-router-dom --save --production
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
@@ -112,6 +130,7 @@ fi
 
 # 3. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  echo "Installing npm packages part 2"
   cd "$DEPLOYMENT_SOURCE"
   eval $NPM_CMD install
   exitWithMessageOnError "npm failed"
@@ -120,6 +139,7 @@ fi
 
 # 4. Build
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  echo "Building CloudDrive"
   cd "$DEPLOYMENT_SOURCE"
   eval $NPM_CMD build
   cp -rf "$DEPLOYMENT_SOURCE/build" "$DEPLOYMENT_TARGET/"
@@ -129,9 +149,11 @@ fi
 
 # 5. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
+  echo "KudoSync Started..."
   "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/build" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
   cp "$DEPLOYMENT_SOURCE/web.config" "$DEPLOYMENT_TARGET/web.config"
   exitWithMessageOnError "Kudu Sync failed"
+  echo "KudoSync Finished..."
 fi
 
 ##################################################################################################################################
