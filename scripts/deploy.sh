@@ -105,7 +105,7 @@ selectNodeVersion
 # 2. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
-  eval $NPM_CMD install
+  eval $NPM_CMD install react-scripts react react-dom redux redux-thunk react-router react-router-dom --save --production
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
@@ -113,12 +113,21 @@ fi
 # 3. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
-  eval $NPM_CMD install react-scripts react react-dom redux redux-thunk react-router react-router-dom --save --production
+  eval $NPM_CMD install
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
 
-# 4. KuduSync
+# 4. Build
+if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  cd "$DEPLOYMENT_SOURCE"
+  eval $NPM_CMD build
+  cp -rf "$DEPLOYMENT_SOURCE/build" "$DEPLOYMENT_TARGET/"
+  exitWithMessageOnError "build failed"
+  cd - > /dev/null
+fi
+
+# 5. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
   "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/build" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
   cp "$DEPLOYMENT_SOURCE/web.config" "$DEPLOYMENT_TARGET/web.config"
