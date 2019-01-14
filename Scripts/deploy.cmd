@@ -108,16 +108,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 :: 4. Post Build
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd copy /Y "D:\home\site\wwwroot\build" "D:\home\site\build"
-  call :ExecuteCmd rmdir /S /Q "D:\home\site\wwwroot\src"
-  call :ExecuteCmd rmdir /S /Q "D:\home\site\wwwroot\public"
-  call :ExecuteCmd rmdir /S /Q "D:\home\site\wwwroot\.vscode"
-  call :ExecuteCmd rmdir /S /Q "D:\home\site\wwwroot\.github"
-  call :ExecuteCmd del /F /Q "D:\home\site\wwwroot\.gitignore"
-  call :ExecuteCmd del /F /Q "D:\home\site\wwwroot\CloudDrive.code-workspace"
-  call :ExecuteCmd del /F /Q "D:\home\site\wwwroot\ContributerCodeOfConduct.md"
-  call :ExecuteCmd del /F /Q "D:\home\site\wwwroot\PULL_REQUEST_TEMPLATE.md"
-  call :ExecuteCmd rmdir /S /Q "D:\home\site\wwwroot\scripts"
+  call :ExecuteCmd copy /Y "D:\home\site\wwwroot\build\*" "D:\home\site\build\"
   call :ExecuteCmd rmdir /S /Q "D:\home\site\wwwroot"
   call :ExecuteCmd copy "D:\home\site\wwwroot\build" "D:\home\site\wwwroot"
   popd
