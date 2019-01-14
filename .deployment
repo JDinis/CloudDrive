@@ -1,4 +1,0 @@
-[config]
-SCM_DO_BUILD_DURING_DEPLOYMENT=true
-SCM_COMMAND_IDLE_TIMEOUT=360
-command = bash scripts/deploy.sh
