@@ -1,3 +1,2 @@
 [config]
 command = deploy.cmd
-command = D:\home\site\wwwroot\scripts\deploy.cmd
