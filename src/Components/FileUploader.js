@@ -24,7 +24,7 @@ class FileUploader extends Component {
 
     render() {
         return (
-            <form encType="multipart/form-data" method="POST" action="/api/file" >
+            <form encType="multipart/form-data" method="POST" action="/backend/file" >
             <input type="file" name="Files" multiple onChange={this.handleDrop} />
             </form>
         )
