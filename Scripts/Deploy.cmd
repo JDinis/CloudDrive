@@ -100,6 +100,8 @@ call :SelectNodeVersion
 :: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\node_modules"
+  call :ExecuteCmd !NPM_CMD! install react-scripts --save
   call :ExecuteCmd !NPM_CMD! install --production
   call :ExecuteCmd !NPM_CMD! run build
   IF !ERRORLEVEL! NEQ 0 goto error
