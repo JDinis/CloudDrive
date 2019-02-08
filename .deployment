@@ -1,2 +1,2 @@
 [config]
-command = scripts\deploy.cmd
+command = Scripts\Deploy.cmd
