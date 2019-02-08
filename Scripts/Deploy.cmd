@@ -99,7 +99,21 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   popd
 )
 
-:: 3. Post Build
+:: 3. KuduSync
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
+
+:: 4. Build
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  call :ExecuteCmd !NPM_CMD! run build --production
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
+:: 5. Post Build
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\src"
@@ -114,7 +128,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   popd
 )
 
-:: 4. KuduSync
+:: 6. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
