@@ -112,7 +112,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
 :: 4. Post Build
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd xcopy /Y /H /F /E "%DEPLOYMENT_SOURCE%\build\" "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd xcopy /Y /H /F /E "%DEPLOYMENT_SOURCE%\build\" "%DEPLOYMENT_TARGET%\"
   popd
 )
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
