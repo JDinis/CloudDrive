@@ -112,15 +112,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
 :: 4. Post Build
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd xcopy /Y /H /F /E "%DEPLOYMENT_SOURCE%\build\" "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\src"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\node_modules"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.vscode"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.github"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\public"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\scripts"
-  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.git"
   popd
 )
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
