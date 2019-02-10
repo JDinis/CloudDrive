@@ -115,7 +115,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\public"
   call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\scripts"
   call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.git"
-  call :ExecuteCmd xcopy /Y /H /F /E "%DEPLOYMENT_SOURCE%\build\" "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd xcopy /Y /H /F /E "%DEPLOYMENT_TARGET%\build\" "%DEPLOYMENT_TARGET%"
   popd
 )
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
