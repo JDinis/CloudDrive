@@ -100,17 +100,23 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   popd
 )
 
-:: 3. Post Build
-IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd xcopy /Y /H /F /E "%DEPLOYMENT_SOURCE%\build\" "%DEPLOYMENT_TARGET%"
-  popd
-)
-
 :: 4. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
+)
+
+:: 3. Post Build
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_TARGET%"  
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\src"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.vscode"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.github"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\public"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\scripts"
+  call :ExecuteCmd rmdir /S /Q "%DEPLOYMENT_TARGET%\.git"
+  call :ExecuteCmd xcopy /Y /H /F /E "%DEPLOYMENT_SOURCE%\build\" "%DEPLOYMENT_TARGET%"
+  popd
 )
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
