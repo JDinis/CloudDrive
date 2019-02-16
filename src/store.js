@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware,compose} from 'redux';
+import {createStore, applyMiddleware,compose} from '../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/redux';
 import thunk from 'redux-thunk';
 import rootReducer from './Reducers'
 

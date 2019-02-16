@@ -1,0 +1,172 @@
+.LoginForm {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+
+input {
+	display: block;
+	outline: none;
+	margin: 0 auto;
+	border: none;
+	-webkit-text-fill-color: #9895AB;
+	-webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0.3) inset;
+	-moz-box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
+    box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
+	transition: background-color 5000s ease-in-out 0s;
+	background-color: transparent !important;
+    -webkit-transition-delay: 999999s;
+}
+::-webkit-input-placeholder { color: #666;} 
+:-moz-placeholder { color: #666; }
+::-moz-placeholder { color: #666; }
+:-ms-input-placeholder { color: #666; }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	border: none;
+	-webkit-text-fill-color: #9895AB;
+	-webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0.3) inset;
+	-moz-box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
+    box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
+	transition: background-color 5000s ease-in-out 0s;
+	background-color: transparent !important;
+    -webkit-transition-delay: 999999s;
+}
+
+.w3-animate-opacity {
+	animation:opac 3s
+}
+
+.w3-animate-fading {
+	animation:fading 3s
+}
+
+@keyframes fading{from{opacity:1} to{opacity:0}}
+@keyframes opac{from{opacity:0} to{opacity:1}}
+
+#Login {
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	color: white;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Old Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge and Opera */
+}
+
+#LoginDiv {
+	text-align: center;
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border:none;
+	font-size: calc(10px + 2vmin);
+	color: #9895AB;
+	border-color: black;
+	border-radius:20px;
+	padding:15px;
+}
+
+#Login .TextInput {
+	color:white !important;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	border-radius: 40px;
+	max-width:11em;
+}
+
+#Login .SubmitInputSpan {
+	display: flex;
+	flex-direction: row;
+	margin-left:20%;
+}
+
+#Login .SubmitInput {
+	font-size: calc(18px + 2vmin);
+	border: 1px solid;
+	border-radius: 40px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background-color: transparent;
+}
+
+#Login .RowInput {
+	color:#9895AB;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-size: calc(20px + 2vmin);
+	border:0;
+}
+
+.modal{
+	top:32% !important;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Old Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge and Opera */
+}
+
+.Row {
+	display: flex;
+	flex-direction: row;
+}
+
+.RowError{
+	padding-top:5%;
+	padding-left:32%;
+	font-size: calc(0.1px + 1.5vmin);
+}
+
+.RowError #Error{
+	color:red;
+	border-radius:30px;
+	background-color:rgba(180,0,0,0.3);
+	padding:10px;
+}
+
+.RowInput #LoginButton {
+	color: #9895AB;
+	box-sizing:border-box !important;
+	font-size: calc(8px + 2vmin);
+	margin-right:6%;
+	margin-left:-15%;
+	min-width:100%;
+	outline: none;
+}
+
+.RowInput #SignupButton {
+	color: #9895AB;
+	box-sizing:border-box !important;
+	font-size: calc(8px + 2vmin);
+	min-width:100%;
+	outline: none;
+}
+
+@import url(../../Theme/Theme_1545447762457.css);
+@import url(../../Theme/Theme_1545447762457.scss);

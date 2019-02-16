@@ -7,7 +7,7 @@ export default function Home() {
             <p>Wellcome</p>
             <NavLink to="/File">File</NavLink>
             <br/>
-            <NavLink to="/Chat">Chat</NavLink>
+            <NavLink to="/Login">Login</NavLink>
     </div>
   );
 }
