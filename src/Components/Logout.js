@@ -23,6 +23,8 @@ class Logout extends Component {
 		axios.post('/logout', {
 			username: this.state.username,
 			password: this.state.password,
+		},{
+			port:3001
 		}).then((res)=>this.props.handleLogout(res.data));
 	}
 	

@@ -6,6 +6,8 @@ export const login = (username,password) => dispatch => {
   axios.post('/Login', {
     username: username,
     password: password,
+  },{
+    port:3001
   })
   .then(user=>{ dispatch({
       type: LOGIN,

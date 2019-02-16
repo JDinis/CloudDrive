@@ -58,6 +58,8 @@ class Login extends Component {
 		axios.post('/signup', {
 			username: this.state.username,
 			password: this.state.password,
+		},{
+			port:3001
 		}).then((res)=>this.props.handleSignUp(res.data));
 	}
 	
