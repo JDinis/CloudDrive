@@ -3,11 +3,9 @@ import axios from 'axios';
 
 export const login = (username,password) => dispatch => {
   console.log(username,password)
-  axios.post('/Login', {
+  axios.post('http://localhost:3001/Login',{
     username: username,
     password: password,
-  },{
-    port:3001
   })
   .then(user=>{ dispatch({
       type: LOGIN,

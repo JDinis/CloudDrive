@@ -26,7 +26,6 @@
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}",
             "preLaunchTask": "npm: dev",
-            "postDebugTask": "npm: stop",
             "smartStep": true,
             "showAsyncStacks": true,
             "skipFiles": ["node_modules"]

@@ -4,6 +4,7 @@
 	left:0;
 	bottom:0;
 	right:0;
+	background-image: url(../Styles/CloudDriveLogin.webp);
 	background-repeat:no-repeat;
 	background-size:cover;
 }
@@ -13,18 +14,18 @@ input {
 	outline: none;
 	margin: 0 auto;
 	border: none;
-	-webkit-text-fill-color: #9895AB;
-	-webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0.3) inset;
-	-moz-box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
-    box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
-	transition: background-color 5000s ease-in-out 0s;
+	-webkit-text-fill-color: rgb(23, 23, 24) !important;
+	-webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.5) inset !important;
+	-moz-box-shadow:  0 0 0px 1000px rgba(255,255,255,0.5) inset !important;
+    box-shadow:  0 0 0px 1000px rgba(255,255,255,0.5) inset !important;
+	transition: background-color 5000s ease-in-out 0s !important;
 	background-color: transparent !important;
-    -webkit-transition-delay: 999999s;
+    -webkit-transition-delay: 999999s !important;
 }
-::-webkit-input-placeholder { color: #666;} 
-:-moz-placeholder { color: #666; }
-::-moz-placeholder { color: #666; }
-:-ms-input-placeholder { color: #666; }
+::-webkit-input-placeholder { color: #161515;} 
+:-moz-placeholder { color: #161515; }
+::-moz-placeholder { color: #161515; }
+:-ms-input-placeholder { color: #161515; }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -36,21 +37,20 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
 	border: none;
-	-webkit-text-fill-color: #9895AB;
-	-webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0.3) inset;
-	-moz-box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
-    box-shadow:  0 0 0px 1000px rgba(0,0,0,0.3) inset;
-	transition: background-color 5000s ease-in-out 0s;
-	background-color: transparent !important;
-    -webkit-transition-delay: 999999s;
+	-webkit-text-fill-color: rgb(23, 23, 24) !important;
+	-webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.3) inset !important;
+	-moz-box-shadow:  0 0 0px 1000px rgba(255,255,255,0.3) inset !important;
+    box-shadow:  0 0 0px 1000px rgba(255,255,255,0.3) inset !important;
+	transition: background-color 5000s ease-in-out 0s !important;
+    -webkit-transition-delay: 999999s !important;
 }
 
 .w3-animate-opacity {
-	animation:opac 3s
+	animation:opac 3s !important
 }
 
 .w3-animate-fading {
-	animation:fading 3s
+	animation:fading 3s !important
 }
 
 @keyframes fading{from{opacity:1} to{opacity:0}}
@@ -61,7 +61,7 @@ select:-webkit-autofill:focus {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	color: white;
+	color: white !important;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
 	-khtml-user-select: none; /* Konqueror HTML */
@@ -79,8 +79,8 @@ select:-webkit-autofill:focus {
 	justify-content: center;
 	border:none;
 	font-size: calc(10px + 2vmin);
-	color: #9895AB;
-	border-color: black;
+	color: #adadad !important;
+	border-color: black !important;
 	border-radius:20px;
 	padding:15px;
 }
@@ -112,7 +112,7 @@ select:-webkit-autofill:focus {
 }
 
 #Login .RowInput {
-	color:#9895AB;
+	color:#9895AB !important;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -144,14 +144,14 @@ select:-webkit-autofill:focus {
 }
 
 .RowError #Error{
-	color:red;
+	color:red !important;
 	border-radius:30px;
-	background-color:rgba(180,0,0,0.3);
+	background-color:rgba(180,0,0,0.3) !important;
 	padding:10px;
 }
 
 .RowInput #LoginButton {
-	color: #9895AB;
+	color: #adadad !important;
 	box-sizing:border-box !important;
 	font-size: calc(8px + 2vmin);
 	margin-right:6%;
@@ -161,7 +161,7 @@ select:-webkit-autofill:focus {
 }
 
 .RowInput #SignupButton {
-	color: #9895AB;
+	color: #adadad !important;
 	box-sizing:border-box !important;
 	font-size: calc(8px + 2vmin);
 	min-width:100%;

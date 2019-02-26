@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import {login} from '../Actions/LoginActions'
-import {BrowserRouter,Redirect,withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
+import {login} from '../Actions/LoginActions';
+import {Redirect,withRouter} from 'react-router-dom';
 import './Styles/Login.css';
+Window.$ = $;
 
 class Login extends Component {
 	constructor(props){
@@ -13,14 +14,8 @@ class Login extends Component {
 		this.state = {
 			username:'',
 			password:'',
-			loggedIn:{
-				success: false, 
-				error:null
-			},
 			Class:'modal w3-animate-opacity'
 		};
-		
-		const ErrorMsg=null;
 		
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSignUp = this.handleSignUp.bind(this);
@@ -65,21 +60,16 @@ class Login extends Component {
 	
 	clickEvt(event){
 		event.preventDefault();
-		console.log(this.props.ErrorMsg);
+		if(this.props.Error!==null)
+			console.log(this.props.Error.msg);
 		event.target.parentElement.style.display="none";
 		document.getElementById("UserInput").value="";
 		document.getElementById("PassInput").value="";
 	};
 	
 render() {
-	var errorNotSet = false;
-	if(this.props.User!==undefined){
-		errorNotSet=this.props.User.loggedIn!==undefined && this.props.User.loggedIn.error!==undefined ? true : false;
-	}
-	
-	var success =  errorNotSet ? {success: this.props.User.loggedIn}:false;
-	var disp= (!success) && this.props.User.loggedIn!==undefined ? 'initial' : 'none';
-		if(!success){
+	var disp= this.props.Error!==null && !this.props.LoggedIn? 'initial' : 'none';
+		if(!this.props.LoggedIn){
 			return (
 				<div className="LoginForm">
 					<div className={this.state.Class} data-backdrop="static" data-keyboard="false" id="Login" tabIndex="-1" role="dialog"> 
@@ -105,7 +95,7 @@ render() {
 										</form>
 									</div>
 									<div className="RowError">
-										<span id="Error" style={{display:disp}}>{this.ErrorMsg=(!success && this.props.User.loggedIn!=undefined) ? this.props.User.loggedIn.error:""}&nbsp;&nbsp;&nbsp;<i className="fas fa-times-circle" onClick={this.clickEvt}></i></span>
+										<span id="Error" style={{display:disp}}>{this.ErrorMsg=(!this.props.LoggedIn && this.props.Error!==null) ? this.props.Error.err:""}&nbsp;&nbsp;&nbsp;<i className="fas fa-times-circle" onClick={this.clickEvt}></i></span>
 									</div>
 								</div>
 							</div>
@@ -114,7 +104,8 @@ render() {
 				</div>
 			);
 		}else{
-			return (<Redirect to="/"/>);
+			$('#Login').modal().toggle();
+			return (<Redirect to="/Profile"/>);
 		}		
 	}
 }
@@ -122,10 +113,14 @@ render() {
 Login.propTypes = {
 	login: PropTypes.func.isRequired,
 	User: PropTypes.object,
+	LoggedIn: PropTypes.bool,
+	Error: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({
-	User: state.Users.User
+	User: state.Users.User,
+	LoggedIn: state.Users.LoggedIn,
+	Error: state.Users.Error
 })
 
 export default withRouter(connect(mapStateToProps, {login})(Login));
