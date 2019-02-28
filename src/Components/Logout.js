@@ -10,7 +10,10 @@ class Logout extends Component {
 		this.handleLogout = this.handleLogout.bind(this);
 	}
 
-	handleLogout(event) { event.preventDefault(); this.props.logout(this.props.User.username, this.props.User.password); }
+	handleLogout(event) {
+		event.preventDefault();
+		this.props.logout(this.props.User.username, this.props.User.password);
+	}
 	render(handleLogout) { return <button onClick={this.handleLogout} className="btn btn-primary btn-block" type="button"><i className="fal fa-power-off"></i></button> }
 }
 

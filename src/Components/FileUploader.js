@@ -13,6 +13,10 @@ class FileUploader extends Component {
     }
 
     handleDrop(event) {
+        if (event.preventDefault) {
+            event.preventDefault();
+        }
+
         ReactDOM.findDOMNode(this).submit();
     }
 
@@ -20,14 +24,13 @@ class FileUploader extends Component {
         if (event.preventDefault) {
             event.preventDefault();
         }
-
     }
 
     render() {
         return (
-            <div style={{ width: "100%", paddingTop: "2.6%", height: "100%", paddingBottom: "100%" }}>
-                <FilePond allowMultiple={true} server="https://clouddriveserver.azurewebsites.net/backend/file/upload" />
-            </div>
+            <form method="post" style={{ width: "100%", height: "100%" }} encType="multipart/form-data" action="http://localhost:3001/backend/file/upload">
+                <div style={{ width: "100%", paddingTop: "2.6%", height: "100%", paddingBottom: "100%" }} onDrop={this.handleDrop} onDragOver={this.handleFiles}></div>
+            </form>
         )
     }
 }

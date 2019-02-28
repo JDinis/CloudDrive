@@ -9,6 +9,9 @@ import Login from './Routes/Login';
 import { UserProfile } from './Routes/UserProfile';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import Error from './Routes/Error';
+import { logout } from './Actions/LoginActions';
+import { Redirect } from 'react-router-dom'
+import { LOGOUT } from './Actions/Types'
 import 'bootstrap';
 import 'filepond/dist/filepond.min.css';
 
@@ -22,6 +25,11 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact render={Home} />
                 <Route path="/Login" render={Login} />
+                <Route path="/Logout" render={() => {
+                  store.dispatch({
+                    type: LOGOUT
+                  }); return (<Redirect to="/" />);
+                }} />
                 <Route path="/File" render={File} />
                 <Route path="/Profile" render={UserProfile} />
                 <Route render={Error} />
