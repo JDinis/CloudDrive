@@ -12,9 +12,8 @@ export const StorageReducer = (state = initialState, action) => {
     case REHYDRATE:
       return {
         ...state, 
-        User: (action.payload!==undefined && action.payload.User!=undefined)?action.payload.User:null,
-        LoggedIn:(action.payload!==undefined)?action.payload.LoggedIn:false,
-        Error: (action.payload!==undefined)?action.payload.Error:null
+        User: (action.payload!==undefined && action.payload.User!==undefined)?action.payload.User:null,
+        LoggedIn:(action.payload!==undefined)?action.payload.LoggedIn:false
       };
       default:
         return state;

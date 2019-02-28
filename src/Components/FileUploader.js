@@ -2,21 +2,22 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { FilePond } from 'react-filepond';
 
 class FileUploader extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.handleFiles = this.handleFiles.bind(this);
         this.handleDrop = this.handleDrop.bind(this);
     }
 
-    handleDrop(){
+    handleDrop(event) {
         ReactDOM.findDOMNode(this).submit();
     }
 
-    handleFiles(event){
-        if(event.preventDefault){
+    handleFiles(event) {
+        if (event.preventDefault) {
             event.preventDefault();
         }
 
@@ -24,9 +25,9 @@ class FileUploader extends Component {
 
     render() {
         return (
-            <form encType="multipart/form-data" method="POST" action="https://clouddriveserver.azurewebsites.net/backend/file" >
-            <input type="file" name="Files" multiple onChange={this.handleDrop} />
-            </form>
+            <div style={{ width: "100%", paddingTop: "2.6%", height: "100%", paddingBottom: "100%" }}>
+                <FilePond allowMultiple={true} server="https://clouddriveserver.azurewebsites.net/backend/file/upload" />
+            </div>
         )
     }
 }

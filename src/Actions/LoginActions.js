@@ -1,7 +1,7 @@
 import {LOGOUT, LOGIN} from './Types'
 import axios from 'axios';
 
-export const login = (username,password) => dispatch => {
+export const login = (username,password,callback) => dispatch => {
   console.log(username,password)
   axios.post('http://localhost:3001/Login',{
     username: username,
@@ -9,14 +9,16 @@ export const login = (username,password) => dispatch => {
   })
   .then(user=>{ dispatch({
       type: LOGIN,
-      payload: user.data
+      payload: user.data,
+      callback
     })
   })
 }
 
-export const logout = (user) => dispatch => {
-  dispatch({
-      type: LOGOUT,
-      payload: user
+export const logout = () => dispatch => {
+  axios.get('http://localhost:3001/Logout')
+  .then(user=>{ dispatch({
+      type: LOGOUT
+    })
   })
 }
