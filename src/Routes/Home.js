@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div>
+    <div className="MainPage">
       <NavBar />
       {/* Home */}
       <section id="Home">

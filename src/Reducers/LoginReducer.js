@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from '../Actions/Types'
+import { LOGIN, LOGOUT, SIGNUP } from '../Actions/Types'
 
 const initialState = {
   User: {},
@@ -15,6 +15,14 @@ export const LoginReducer = (state = initialState, action) => {
         User: JSON.parse(action.payload).User,
         LoggedIn: (JSON.parse(JSON.parse(action.payload).Error).err === null) ? true : false,
         Error: (JSON.parse(JSON.parse(action.payload).Error).err !== null) ? JSON.parse(action.payload).Error : null
+      };
+    case SIGNUP:
+      action.callback()
+      return {
+        ...state,
+        User: JSON.parse(action.payload).User,
+        LoggedIn: true,
+        Error: null
       };
     case LOGOUT:
       return {

@@ -4,14 +4,15 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import { persistor } from './store'
 import Home from './Routes/Home';
-import File from './Routes/File';
+import { File } from './Routes/File';
+import { UploadRoute } from './Routes/UploadRoute';
 import Login from './Routes/Login';
 import { UserProfile } from './Routes/UserProfile';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import Error from './Routes/Error';
 import { logout } from './Actions/LoginActions';
 import { Redirect } from 'react-router-dom'
-import { LOGOUT } from './Actions/Types'
+import { LOGOUT, SIGNUP } from './Actions/Types'
 import 'bootstrap';
 import 'filepond/dist/filepond.min.css';
 
@@ -25,13 +26,20 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact render={Home} />
                 <Route path="/Login" render={Login} />
+                <Route path="/Signup" render={() => {
+                  store.dispatch({
+                    type: SIGNUP
+                  }); return (<Redirect to="/" />);
+                }} />
                 <Route path="/Logout" render={() => {
                   store.dispatch({
                     type: LOGOUT
                   }); return (<Redirect to="/" />);
                 }} />
                 <Route path="/File" render={File} />
-                <Route path="/Profile" render={UserProfile} />
+                <Route path="/Profile" exact render={UserProfile} />
+                <Route path="/Profile/Files" exact render={File} />
+                <Route path="/Profile/Upload" exact render={UploadRoute} />
                 <Route render={Error} />
               </Switch>
             </Router>

@@ -1,10 +1,8 @@
 import React from 'react'
-import FileUploader from '../Components/FileUploader';
+import Files from '../Components/Files';
 
-export default function File() {
+export const File = () => {
   return (
-    <div>
-      <FileUploader/>
-    </div>
+    <Files />
   );
 }

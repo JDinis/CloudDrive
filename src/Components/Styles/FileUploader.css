@@ -1,0 +1,24 @@
+.is-dragover {
+	background-color: grey !important;
+  }
+
+.no-js .box__button {
+display: block;
+}
+
+.has-advanced-upload {
+	background-color: white;
+	outline: 2px dashed black;
+	outline-offset: -10px;
+  }
+
+.has-advanced-upload .box__dragndrop {
+	display: inline;
+}
+
+.is-uploading .box__input {
+visibility: none;
+}
+.is-uploading .box__uploading {
+display: block;
+}

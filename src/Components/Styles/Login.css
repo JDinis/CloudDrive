@@ -1,12 +1,12 @@
 .LoginForm {
-	position:absolute;
-	top:0;
-	left:0;
-	bottom:0;
-	right:0;
-	background-image: url(../Styles/CloudDriveLogin.webp);
-	background-repeat:no-repeat;
-	background-size:cover;
+	position:absolute !important;
+	top:0 !important;
+	left:0 !important;
+	bottom:0 !important;
+	right:0 !important;
+	background-image: url('CloudDriveLogin.webp') !important;
+	background-repeat:no-repeat !important;
+	background-size:cover !important;
 }
 
 input {

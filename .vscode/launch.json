@@ -10,9 +10,9 @@
             "request": "launch",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
             "args": [
-              "test",
-              "--runInBand",
-              "--no-cache"
+                "test",
+                "--runInBand",
+                "--no-cache"
             ],
             "cwd": "${workspaceRoot}",
             "protocol": "inspector",
@@ -25,10 +25,12 @@
             "name": "CloudDrive",
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "npm: dev",
+            "preLaunchTask": "npm: build",
             "smartStep": true,
             "showAsyncStacks": true,
-            "skipFiles": ["node_modules"]
+            "skipFiles": [
+                "node_modules"
+            ]
         }
     ]
 }

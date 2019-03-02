@@ -6,17 +6,17 @@ import { Redirect, withRouter } from 'react-router-dom';
 import './Styles/Login.css';
 import Footer from './Footer';
 import NavBar from './NavBar';
-import UserPage from './UserPage';
+import FileUploader from './FileUploader';
 
 Window.$ = $;
 
-class Profile extends Component {
+class Uploader extends Component {
 	render() {
 		if (this.props.User !== undefined && this.props.User !== null && this.props.User.username !== undefined) {
 			return (
 				<div className="MainPage">
 					<NavBar />
-					<UserPage />
+					<FileUploader />
 					<Footer />
 				</div>
 			);
@@ -26,7 +26,7 @@ class Profile extends Component {
 	}
 }
 
-Profile.propTypes = {
+Uploader.propTypes = {
 	User: PropTypes.object,
 }
 
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => ({
 	LoggedIn: state.Users.LoggedIn
 })
 
-export default withRouter(connect(mapStateToProps, null)(Profile));
+export default withRouter(connect(mapStateToProps, null)(Uploader));

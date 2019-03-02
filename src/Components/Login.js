@@ -3,9 +3,10 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-import { login } from '../Actions/LoginActions';
+import { login, signup } from '../Actions/LoginActions';
 import { Redirect, withRouter } from 'react-router-dom';
 import './Styles/Login.css';
+const loginBackground = require('./Styles/CloudDriveLogin.webp');
 Window.$ = $;
 
 class Login extends Component {
@@ -28,10 +29,20 @@ class Login extends Component {
 		$("#Login").modal({
 			closable: false
 		}).modal("show");
+		$('body').removeClass('modal-open');
+		$('body').css({
+			'background-image': 'url(' + loginBackground + ')',
+			'background-size': 'cover',
+			'background-repeat': 'no-repeat'
+		});
 	}
 	componentWillUnmount() {
 		$('.modal-backdrop').remove();
-		$(document.body).removeClass("modal-open");
+		$('body').css({
+			'background-image': '',
+			'background-size': '',
+			'background-repeat': ''
+		});
 	}
 
 	handleChange(event) {
@@ -55,12 +66,13 @@ class Login extends Component {
 
 	handleSignUp(event) {
 		event.preventDefault();
-		axios.post('https://clouddriveserver.azurewebsites.net/signup', {
-			username: this.state.username,
-			password: this.state.password,
-		}, {
-				port: 3001
-			}).then((res) => this.props.handleSignUp(res.data));
+		this.props.signup(this.state.username, this.state.password, (obj = this) => {
+			if (obj.props.User !== undefined && (obj.props.Error === undefined || (obj.props.Error !== null && JSON.parse(obj.props.Error).err === null))) {
+				obj.setState({ username: obj.state.username, password: obj.state.password, displayError: 'none', Class: obj.state.Class });
+			} else {
+				obj.setState({ username: obj.state.username, password: obj.state.password, displayError: 'initial', Class: obj.state.Class });
+			}
+		});
 	}
 
 	clickEvt(event) {
@@ -81,31 +93,33 @@ class Login extends Component {
 		var disp = this.state.displayError;
 		if (!this.props.LoggedIn) {
 			return (
-				<div className="LoginForm">
-					<div className={this.state.Class} data-backdrop="static" data-keyboard="false" id="Login" tabIndex="-1" role="dialog">
-						<div className="modal-dialog" role="document">
-							<div className="modal-content" id="LoginDiv">
-								<div className="modal-body">
-									<div className="Row">
-										<b>Username:</b>&nbsp;&nbsp;
+				<div className="modal-open">
+					<div className="LoginForm">
+						<div className={this.state.Class} data-backdrop="static" data-keyboard="false" id="Login" tabIndex="-1" role="dialog">
+							<div className="modal-dialog" role="document">
+								<div className="modal-content" id="LoginDiv">
+									<div className="modal-body">
+										<div className="Row">
+											<b>Username:</b>&nbsp;&nbsp;
 										<input className="TextInput" id="UserInput" type="text" name="username" onChange={this.handleChange} placeholder="Insert Username" />
-									</div>
-									<br />
-									<div className="Row">
-										<b>Password:&nbsp;&nbsp;</b>
-										<input className="TextInput" id="PassInput" type="password" name="password" onChange={this.handleChange} placeholder="Insert Password"></input>
-									</div>
-									<br />
-									<div className="RowInput">
-										<form action="Login" method="post" target="_self">
-											<span className="SubmitInputSpan">
-												<button onClick={this.handleLogin} id="LoginButton" className="SubmitInput" type="submit">Login</button>
-												<button onClick={this.handleSignUp} id="SignupButton" className="SubmitInput" type="submit">Sign Up</button>
-											</span>
-										</form>
-									</div>
-									<div className="RowError">
-										<span id="Error" style={{ display: disp }}>{this.ErrorMsg = (!this.props.LoggedIn && this.props.Error !== null && JSON.parse(this.props.Error).err !== null) ? JSON.parse(this.props.Error).err : ""}&nbsp;&nbsp;&nbsp;<i className="fas fa-times-circle" onClick={this.clickEvt}></i></span>
+										</div>
+										<br />
+										<div className="Row">
+											<b>Password:&nbsp;&nbsp;</b>
+											<input className="TextInput" id="PassInput" type="password" name="password" onChange={this.handleChange} placeholder="Insert Password"></input>
+										</div>
+										<br />
+										<div className="RowInput">
+											<form action="Login" method="post" target="_self">
+												<span className="SubmitInputSpan">
+													<button onClick={this.handleLogin} id="LoginButton" className="SubmitInput" type="button">Login</button>
+													<button onClick={this.handleSignUp} id="SignupButton" className="SubmitInput" type="button">Sign Up</button>
+												</span>
+											</form>
+										</div>
+										<div className="RowError">
+											<span id="Error" style={{ display: disp }}>{this.ErrorMsg = (!this.props.LoggedIn && this.props.Error !== null && JSON.parse(this.props.Error).err !== null) ? JSON.parse(this.props.Error).err : ""}&nbsp;&nbsp;&nbsp;<i className="fas fa-times-circle" onClick={this.clickEvt}></i></span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -122,6 +136,7 @@ class Login extends Component {
 
 Login.propTypes = {
 	login: PropTypes.func.isRequired,
+	signup: PropTypes.func.isRequired,
 	User: PropTypes.object,
 	LoggedIn: PropTypes.bool,
 	Error: PropTypes.object
@@ -133,4 +148,4 @@ const mapStateToProps = (state) => ({
 	Error: state.Users.Error
 })
 
-export default withRouter(connect(mapStateToProps, { login })(Login));
+export default withRouter(connect(mapStateToProps, { login, signup })(Login));
