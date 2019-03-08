@@ -74,12 +74,12 @@ class FileUploader extends Component {
         }
 
         axios({
-            url: '/backend/file/upload',
+            url: '/files/upload',
             method: 'POST',
             data: formdata,
             headers: { 'Content-Type': 'multipart/form-data' }
         }).then((res) => {
-            if (JSON.parse(res.data).success) {
+            if (res.data.success) {
                 $("#formUp").addClass('is-uploading').removeClass('is-error');
                 $("#formUp").find('label').text('File Uploaded Successfully');
             } else {
@@ -108,7 +108,7 @@ class FileUploader extends Component {
     render() {
         return (
             <div style={{ flex: '1 1 auto', flexFlow: 'column' }}>
-                <form id="formUp" className="box has-advanced-upload" encType="multipart/form-data" method="POST" action="/backend/file/upload" >
+                <form id="formUp" className="box has-advanced-upload" encType="multipart/form-data" method="POST" action="/files/upload" >
                     <center display="none">
                         <div class="box__input">
                             <input class="box__file" data-multiple-caption="{count} files selected" style={{ flex: 1, opacity: 0, width: "100%", height: "65vh" }}

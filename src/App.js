@@ -15,6 +15,8 @@ import { Redirect } from 'react-router-dom'
 import { LOGOUT, SIGNUP } from './Actions/Types'
 import 'bootstrap';
 import 'filepond/dist/filepond.min.css';
+import Pricing from './Routes/Pricing';
+import AboutUs from './Routes/AboutUs';
 
 class App extends Component {
   render() {
@@ -26,6 +28,8 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact render={Home} />
                 <Route path="/Login" render={Login} />
+                <Route path="/Pricing" render={Pricing} />
+                <Route path="/AboutUs" render={AboutUs} />
                 <Route path="/Signup" render={() => {
                   store.dispatch({
                     type: SIGNUP

@@ -78,7 +78,7 @@ class Login extends Component {
 	clickEvt(event) {
 		event.preventDefault();
 		if (this.props.Error !== null && event.target.parentElement.style.display === 'initial') {
-			console.log(JSON.parse(this.props.Error).msg);
+			console.log(this.props.Error.msg);
 			event.target.parentElement.style.display = "none";
 			this.setState({ username: this.state.username, password: this.state.password, displayError: 'none', Class: this.state.Class });
 			document.getElementById("UserInput").value = "";

@@ -20,9 +20,9 @@ export default class Footer extends Component {
                             <div style={{ flex: "0 0 auto", marginLeft: "5%", alignItems: "center", alignSelf: "center", justifyContent: "space-evenly", color: "rgba(255,255,255,1)" }}>
                                 <h5>Products</h5>
                                 <ul className="nav navbar-nav">
-                                    <li className="nav-item"><Link to="/#" style={{ color: "rgba(255,255,255,0.5)" }} className="nav-link">Basic</Link></li>
-                                    <li className="nav-item"><Link to="/#" style={{ color: "rgba(255,255,255,0.5)" }} className="nav-link">Professional</Link></li>
-                                    <li className="nav-item"><Link to="/#" style={{ color: "rgba(255,255,255,0.5)" }} className="nav-link">Enterprise</Link></li>
+                                    <li className="nav-item"><Link to="/Pricing#" style={{ color: "rgba(255,255,255,0.5)" }} className="nav-link">Basic</Link></li>
+                                    <li className="nav-item"><Link to="/Pricing#" style={{ color: "rgba(255,255,255,0.5)" }} className="nav-link">Professional</Link></li>
+                                    <li className="nav-item"><Link to="/Pricing#" style={{ color: "rgba(255,255,255,0.5)" }} className="nav-link">Enterprise</Link></li>
                                 </ul>
                             </div>
                             <div style={{ flex: "0 0 auto", marginLeft: "5%", alignItems: "center", alignSelf: "center", justifyContent: "space-evenly", color: "rgba(255,255,255,1)" }}>

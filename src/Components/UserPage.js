@@ -15,9 +15,9 @@ class UserPage extends Component {
 	}
 
 	componentWillMount() {
-		axios.get('/backend/profile/', (res) => {
-			if (JSON.parse(res.data).user) {
-				JSON.parse(res.data).user.forEach(key => {
+		axios.get('/profile/', (res) => {
+			if (res.data.user) {
+				res.data.user.forEach(key => {
 					React.createElement('p', `${key}: key`);
 				})
 			} else {

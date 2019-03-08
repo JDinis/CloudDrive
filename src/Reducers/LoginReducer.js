@@ -12,15 +12,15 @@ export const LoginReducer = (state = initialState, action) => {
       action.callback()
       return {
         ...state,
-        User: JSON.parse(action.payload).User,
-        LoggedIn: (JSON.parse(JSON.parse(action.payload).Error).err === null) ? true : false,
-        Error: (JSON.parse(JSON.parse(action.payload).Error).err !== null) ? JSON.parse(action.payload).Error : null
+        User: action.payload.User,
+        LoggedIn: action.payload.Error.err === null ? true : false,
+        Error: action.payload.Error.err !== null ? action.payload.Error : null
       };
     case SIGNUP:
       action.callback()
       return {
         ...state,
-        User: JSON.parse(action.payload).User,
+        User: action.payload.User,
         LoggedIn: true,
         Error: null
       };
