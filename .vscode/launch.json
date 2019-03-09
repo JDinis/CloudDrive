@@ -5,24 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug CRA Tests",
-            "type": "node",
+            "type": "chrome",
             "request": "launch",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
-            "args": [
-                "test",
-                "--runInBand",
-                "--no-cache"
-            ],
-            "cwd": "${workspaceRoot}",
-            "protocol": "inspector",
+            "name": "CloudDriveTest",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "npm: dev",
             "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen"
+            "internalConsoleOptions": "neverOpen",
+            "smartStep": true,
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "showAsyncStacks": true,
+            "skipFiles": [
+                "node_modules"
+            ]
         },
         {
             "type": "chrome",
             "request": "launch",
-            "name": "CloudDrive",
+            "name": "CloudDriveBuild",
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}",
             "preLaunchTask": "npm: build",

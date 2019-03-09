@@ -110,8 +110,8 @@ class FileUploader extends Component {
             <div style={{ flex: '1 1 auto', flexFlow: 'column' }}>
                 <form id="formUp" className="box has-advanced-upload" encType="multipart/form-data" method="POST" action="/files/upload" >
                     <center display="none">
-                        <div class="box__input">
-                            <input class="box__file" data-multiple-caption="{count} files selected" style={{ flex: 1, opacity: 0, width: "100%", height: "65vh" }}
+                        <div className="box__input">
+                            <input className="box__file" data-multiple-caption="{count} files selected" style={{ flex: 1, opacity: 0, width: "100%", height: "65vh" }}
                                 type="file" title="" name="Files" multiple
                                 onChange={this.handleChange}
                                 onClick={this.handleEvent}
@@ -123,12 +123,12 @@ class FileUploader extends Component {
                                 onDragStart={this.handleDragStart}
                                 onDragOver={this.handleFiles}
                                 onProgress={this.handleProgress} />
-                            <label for="file"><strong>Choose a file</strong><span style={{ display: 'none' }} class="box__dragndrop"> or drag it here</span>.</label>
-                            <button style={{ display: 'none' }} class="box__button" onClick={this.handleChange}>Upload</button>
+                            <label htmlFor="file"><strong>Choose a file</strong><span style={{ display: 'none' }} className="box__dragndrop"> or drag it here</span>.</label>
+                            <button style={{ display: 'none' }} className="box__button" onClick={this.handleChange}>Upload</button>
                         </div>
-                        <div style={{ display: 'none' }} class="box__uploading">Uploading&hellip;</div>
-                        <div style={{ display: 'none' }} class="box__success">Done!</div>
-                        <div style={{ display: 'none' }} class="box__error">Error! <span></span>.</div>
+                        <div style={{ display: 'none' }} className="box__uploading">Uploading&hellip;</div>
+                        <div style={{ display: 'none' }} className="box__success">Done!</div>
+                        <div style={{ display: 'none' }} className="box__error">Error! <span></span>.</div>
                     </center>
                 </form>
             </div>

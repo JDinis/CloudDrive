@@ -18,22 +18,24 @@ class NavBar extends Component {
             this.Element = [React.createElement(NavLink, {
                 to: "/Profile", className: 'btn btn-primary btn-block',
                 style: { width: "100%" },
-                title: 'Profile', key: 'idElement' + 1
+                title: 'Profile',
+                key: "idElement1"
             }, "Profile"), React.createElement(NavLink, {
                 to: "/Profile/Files", className: 'btn btn-primary btn-block',
                 style: { width: "100%" },
-                title: 'List Files', key: 'idElement' + 2
-            }, "List Files"), React.createElement(NavLink, {
-                to: "/Profile/Upload", className: 'btn btn-primary btn-block',
-                style: { width: "100%" },
-                title: 'Upload Files', key: 'idElement' + 3
-            }, "Upload Files"), React.createElement(Logout, { key: 'idElement' + 4 })];
+                title: 'List Files',
+                key: "idElement2"
+            }, "List Files")];
         } else {
             this.Element = [React.createElement(NavLink, {
                 to: "/Login", className: 'button btn btn-primary btn-block',
                 style: { width: "100%" },
-                title: 'Login'
-            }, React.createElement("i", { className: "fal fa-sign-in fa-fw fa-lg" }))];
+                title: 'Login',
+                key: 'idElement4'
+            }, React.createElement("i", {
+                className: "fal fa-sign-in fa-fw fa-lg",
+                key: 'idElement5'
+            }))];
         }
 
         return (
@@ -53,7 +55,7 @@ class NavBar extends Component {
                         <ul className="nav navbar-nav navbar-right flex-row justify-content-between ml-auto">
                         </ul>
                         <ul className="nav navbar-nav navbar-right flex-row justify-content-between ml-auto">
-                            <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-primary" style={{ border: 0, borderRadius: "0px", backgroundColor: "transparent" }} title="settings"><i className="fa fa-cog fa-fw fa-lg"></i> <span className="caret"></span></button>
+                            <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-primary" style={{ border: 0, borderRadius: "0px", backgroundColor: "transparent", outline: "none", outlineStyle: "none", boxShadow: "none", borderColor: "transparent" }} title="settings"><i className="fa fa-cog fa-fw fa-lg"></i> <span className="caret"></span></button>
                             <ul className="dropdown-menu dropdown-menu-right mt-2" style={{ backgroundColor: "transparent", border: 0 }}>
                                 <li className="px-3 py-2">
                                     <form className="form">

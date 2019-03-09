@@ -1,9 +1,6 @@
 import { REHYDRATE } from 'redux-persist';
 
 const initialState = {
-  User: null,
-  LoggedIn: false,
-  Error: null
 };
 
 export const StorageReducer = (state = initialState, action) => {

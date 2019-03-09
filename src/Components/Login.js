@@ -19,10 +19,20 @@ class Login extends Component {
 			Class: 'modal w3-animate-opacity'
 		};
 
+		this.handleEnter = this.handleEnter.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSignUp = this.handleSignUp.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
 		this.clickEvt = this.clickEvt.bind(this);
+	}
+
+	handleEnter(e) {
+		if (e.keyCode === 13) {
+			// Cancel the default action, if needed
+			e.preventDefault();
+			// Trigger the button element with a click
+			document.getElementById("LoginButton").click();
+		}
 	}
 
 	componentDidMount() {
@@ -43,6 +53,10 @@ class Login extends Component {
 			'background-size': '',
 			'background-repeat': ''
 		});
+		this.handleChange = null;
+		this.handleSignUp = null;
+		this.handleLogin = null;
+		this.clickEvt = null;
 	}
 
 	handleChange(event) {
@@ -112,7 +126,7 @@ class Login extends Component {
 										<div className="RowInput">
 											<form action="Login" method="post" target="_self">
 												<span className="SubmitInputSpan">
-													<button onClick={this.handleLogin} id="LoginButton" className="SubmitInput" type="button">Login</button>
+													<button autoFocus onKeyDown={this.handleEnter} onClick={this.handleLogin} id="LoginButton" className="SubmitInput" type="button">Login</button>
 													<button onClick={this.handleSignUp} id="SignupButton" className="SubmitInput" type="button">Sign Up</button>
 												</span>
 											</form>

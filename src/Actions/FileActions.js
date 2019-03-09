@@ -1,11 +1,21 @@
-import { ADDFILES } from './Types'
+import { ADDFILES, LISTFILES, DELETEFILE } from './Types'
 import axios from 'axios';
 
 export const listFiles = () => dispatch => {
     axios.get('/files')
         .then(files => {
             dispatch({
-                type: ADDFILES,
+                type: LISTFILES,
+                payload: files.data
+            })
+        });
+}
+
+export const deleteFile = (filename) => dispatch => {
+    axios.delete('/files/' + filename)
+        .then(files => {
+            dispatch({
+                type: DELETEFILE,
                 payload: files.data
             })
         });

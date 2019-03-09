@@ -1,4 +1,4 @@
-import { ADDFILES } from "../Actions/Types";
+import { ADDFILES, LISTFILES, DELETEFILE } from "../Actions/Types";
 
 const initialState = {
     Files: [],
@@ -8,11 +8,16 @@ const initialState = {
 
 export const FileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADDFILES:
+        case LISTFILES:
             return {
                 ...state,
-                Files: action.payload.Files,
+                Files: action.payload.files,
                 Error: action.payload.Error
+            };
+        case DELETEFILE:
+            return {
+                ...state,
+                Success: action.payload.success
             };
         default:
             return state

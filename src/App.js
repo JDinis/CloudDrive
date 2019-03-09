@@ -23,31 +23,31 @@ class App extends Component {
     return (
       <div>
         <Provider store={store}>
-          <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-            <Router>
-              <Switch>
-                <Route path="/" exact render={Home} />
-                <Route path="/Login" render={Login} />
-                <Route path="/Pricing" render={Pricing} />
-                <Route path="/AboutUs" render={AboutUs} />
-                <Route path="/Signup" render={() => {
-                  store.dispatch({
-                    type: SIGNUP
-                  }); return (<Redirect to="/" />);
-                }} />
-                <Route path="/Logout" render={() => {
-                  store.dispatch({
-                    type: LOGOUT
-                  }); return (<Redirect to="/" />);
-                }} />
-                <Route path="/File" render={File} />
-                <Route path="/Profile" exact render={UserProfile} />
-                <Route path="/Profile/Files" exact render={File} />
-                <Route path="/Profile/Upload" exact render={UploadRoute} />
-                <Route render={Error} />
-              </Switch>
-            </Router>
-          </PersistGate>
+          {/*</Provider>PersistGate loading={<div>Loading...</div>} persistor={persistor}>*/}
+          <Router>
+            <Switch>
+              <Route path="/" exact render={Home} />
+              <Route path="/Login" render={Login} />
+              <Route path="/Pricing" render={Pricing} />
+              <Route path="/AboutUs" render={AboutUs} />
+              <Route path="/Signup" render={() => {
+                store.dispatch({
+                  type: SIGNUP
+                }); return (<Redirect to="/" />);
+              }} />
+              <Route path="/Logout" render={() => {
+                store.dispatch({
+                  type: LOGOUT
+                }); return (<Redirect to="/" />);
+              }} />
+              <Route path="/File" render={File} />
+              <Route path="/Profile" exact render={UserProfile} />
+              <Route path="/Profile/Files" exact render={File} />
+              <Route path="/Profile/Upload" exact render={UploadRoute} />
+              <Route render={Error} />
+            </Switch>
+          </Router>
+          {/*</PersistGate>*/}
         </Provider>
       </div>
     );

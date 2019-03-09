@@ -5,6 +5,7 @@ import $ from 'jquery';
 import { Redirect, withRouter } from 'react-router-dom';
 import './Styles/Login.css';
 import axios from 'axios';
+import { getUser } from '../Actions/LoginActions'
 import NavBar from './NavBar';
 
 Window.$ = $;
@@ -15,30 +16,34 @@ class UserPage extends Component {
 	}
 
 	componentWillMount() {
-		axios.get('/profile/', (res) => {
-			if (res.data.user) {
-				res.data.user.forEach(key => {
-					React.createElement('p', `${key}: key`);
-				})
-			} else {
-				window.location.assign('/logout');
-			}
-		},
-			{}, (err) => {
-				console.log('Error: ' + err);
-			})
+		this.props.getUser();
 	}
 
 	render() {
 		return (
-			<div style={{ flex: '1 1 auto', flexFlow: 'column' }} >
-				k
+			<div style={{ flex: '1 1 auto', flexFlow: 'column', marginTop: "2vh" }}>
+				<center>
+					<p>Username: {this.props.User.username}</p>
+					<p>Password: {this.props.User.password}</p>
+					<p>Email: {this.props.User.email}</p>
+					<p>First Name:{this.props.User.firstName}</p>
+					<p>Last Name:{this.props.User.lastName}</p>
+					<p>Profile Picture Url: {this.props.User.profilePic}</p>
+					<p>Is Admin: {this.props.User.admin}</p>
+					<button onClick={this.deleteUser} ></button>
+				</center>
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = (state) => ({
-})
+UserPage.propTypes = {
+	getUser: PropTypes.func.isRequired,
+	User: PropTypes.object
+}
 
-export default withRouter(connect(mapStateToProps, null)(UserPage));
+const mapStateToProps = (state) => ({
+	User: state.Users.User,
+	Error: state.Users.Error
+})
+export default withRouter(connect(mapStateToProps, { getUser })(UserPage));
