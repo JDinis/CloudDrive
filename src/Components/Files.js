@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
@@ -17,26 +18,33 @@ class Files extends Component {
 		this.forceRerender = this.forceRerender.bind(this);
 	}
 
-	forceRerender() {
-		this.forceUpdate();
-	}
-
-	componentWillMount() {
-		this.props.isLogged(this.props.User.username);
-	}
-
 	render() {
 		if (this.props.LoggedIn) {
 			return (
 				<div className="MainPage">
 					<NavBar />
 					<FileList id="FileList" forceRerender={this.forceRerender} />
-					<Footer />
+					<Footer id="fileFooter" />
 				</div>
 			);
 		} else {
 			return (<Redirect to="/Login" />);
 		}
+	}
+
+	forceRerender() {
+		/*ReactDOM.unmountComponentAtNode(FileList);
+		this.forceUpdate();*/
+		var elemP = ReactDOM.findDOMNode("FileList").parentElement;
+		var elemN = ReactDOM.findDOMNode("fileFooter");
+		var elem = ReactDOM.findDOMNode("FileList");
+		var ele = React.createElement(FileList, { id: "FileList", forceRerender: this.forceRerender });
+		elem.remove();
+		elemP.insertBefore(ele, elemN);
+	}
+
+	componentWillMount() {
+		this.props.isLogged(this.props.User.username);
 	}
 }
 

@@ -25,7 +25,13 @@ class NavBar extends Component {
                 style: { width: "100%" },
                 title: 'List Files',
                 key: "idElement2"
-            }, "List Files"), React.createElement(NavLink, {
+            }, "List Files"),
+            this.props.User.admin ? React.createElement(NavLink, {
+                to: "/BackOffice", className: 'btn btn-primary btn-block',
+                style: { width: "100%" },
+                title: 'BackOffice',
+                key: "idElementAdmin"
+            }, 'BackOffice') : '', React.createElement(NavLink, {
                 to: "/Logout", className: 'btn btn-primary btn-block',
                 style: { width: "100%" },
                 title: 'Logout',

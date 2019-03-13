@@ -18,6 +18,12 @@ import 'bootstrap';
 import 'filepond/dist/filepond.min.css';
 import Pricing from './Routes/Pricing';
 import AboutUs from './Routes/AboutUs';
+import BackOfficeRoute from './Routes/BackOfficeRoute';
+import ListProfiles from './Components/ListProfiles';
+import ViewProfile from './Routes/ViewProfile';
+import AddUsers from './Components/AddUsers';
+import ListUserFiles from './Components/ListUserFiles';
+import DownloadUsersFiles from './Components/DownloadUsersFiles';
 
 class App extends Component {
   render() {
@@ -46,6 +52,12 @@ class App extends Component {
               <Route path="/Profile/Edit" exact render={EditProfile} />
               <Route path="/Profile/Files" exact render={File} />
               <Route path="/Profile/Upload" exact render={UploadRoute} />
+              <Route path="/BackOffice" exact render={BackOfficeRoute} />
+              <Route path="/ListUsers" exact render={ListProfiles} />
+              <Route path="/ListUserFiles" exact render={ListUserFiles} />
+              <Route path="/DownloadUsersFiles" exact render={DownloadUsersFiles} />
+              <Route path="/AddUsers" exact render={AddUsers} />
+              <Route path="/ViewProfile" exact render={ViewProfile} />
               <Route render={Error} />
             </Switch>
           </Router>

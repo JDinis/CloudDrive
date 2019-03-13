@@ -50,12 +50,13 @@ class FileList extends Component {
 				e.event.stopPropagation();
 		}
 
-		this.props.listFiles();
-		this.forceUpdate();
-
 		var currentTarget = (e.currentTarget !== undefined) ? e.currentTarget : e.props.ref;
 		this.props.deleteFile(ReactDOM.findDOMNode(currentTarget).children[1].innerHTML,
-			() => { this.props.listFiles(); this.forceUpdate(); });
+			() => {
+				this.props.forceRerender();
+			});
+		window.location.reload();
+		return false;
 	}
 
 	onEnter(e) {
@@ -104,36 +105,31 @@ class FileList extends Component {
 			</Menu>
 		);
 
-		if (this.props.LoggedIn) {
-			return (
-				<div>
-					<div onDrag={this.onEnter} onDragEnter={this.onEnter} onDragOver={this.onEnter} style={{ flex: '1 1 auto', marginTop: "4vh", marginLeft: "3vh", minHeight: "70vh", alignContent: "baseline", flexFlow: "row", display: "flex", flexWrap: "wrap" }} >
-						{
-							this.props.Files.forEach(element => {
-								var ext = element.split(".")[element.split(".").length - 1].toString();
-								var comp = React.createElement('div', { onClick: this.downloadFile, id: "div" + k++, style: { WebkitFontSmoothing: 'antialiased', width: "fit-content", flexDirection: "column", height: "90px", display: "flex" }, key: "myrfvkdiv" + k },
-									[
-										React.createElement(FileIcon, { extension: ext, key: "myrfvk" + k, ...defaultStyles[ext], size: 64, marginLeft: "10px" }),
-										React.createElement('p', { style: { display: "block", textOverflow: "ellipsis", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", width: "64px" }, key: "myrfvklabel" + k }, element)
-									]);
-								arr.push(
-									React.createElement(MenuProvider,
-										{ id: 'menu_id', onContextMenu: this.handleContextMenu, key: 'menuId' + k, style: { height: '90px' } }, comp))
-							})
-						}
-						<MyAwesomeMenu />
-						{arr}
-					</div>
-					<div id="fileUp" onDragEnd={this.onDragEnd} onDragLeave={this.onDragEnd} onDragExit={this.onDragEnd} onDrop={this.onExit} style={{ position: "absolute", top: "10vh", left: 0, right: 0, bottom: 0, minHeight: "74vh", maxHeight: "74vh", opacity: "0.4", display: this.hidden ? "block" : "none" }} >
-						<FileUploader listFiles={this.updateFileList} hideFileUploader={this.hideFileUploader} />
-					</div>
-				</div >
-			)
-		} else {
-			return (
-				<Redirect to='/login' />
-			);
-		}
+		return (
+			<div>
+				<div onDrag={this.onEnter} onDragEnter={this.onEnter} onDragOver={this.onEnter} style={{ flex: '1 1 auto', marginTop: "4vh", marginLeft: "3vh", minHeight: "70vh", alignContent: "baseline", flexFlow: "row", display: "flex", flexWrap: "wrap" }} >
+					{
+
+						this.props.Files.forEach(element => {
+							var ext = element.split(".")[element.split(".").length - 1].toString();
+							var comp = React.createElement('div', { onClick: this.downloadFile, id: "div" + k++, style: { WebkitFontSmoothing: 'antialiased', width: "fit-content", flexDirection: "column", height: "90px", display: "flex" }, key: "myrfvkdiv" + k },
+								[
+									React.createElement(FileIcon, { extension: ext, key: "myrfvk" + k, ...defaultStyles[ext], size: 64, marginLeft: "10px" }),
+									React.createElement('p', { style: { display: "block", textOverflow: "ellipsis", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", width: "64px" }, key: "myrfvklabel" + k }, element)
+								]);
+							arr.push(
+								React.createElement(MenuProvider,
+									{ id: 'menu_id', onContextMenu: this.handleContextMenu, key: 'menuId' + k, style: { height: '90px' } }, comp))
+						})
+					}
+					<MyAwesomeMenu />
+					{arr}
+				</div>
+				<div id="fileUp" onDragEnd={this.onDragEnd} onDragLeave={this.onDragEnd} onDragExit={this.onDragEnd} onDrop={this.onExit} style={{ position: "absolute", top: "10vh", left: 0, right: 0, bottom: 0, minHeight: "74vh", maxHeight: "74vh", opacity: "0.4", display: this.hidden ? "block" : "none" }} >
+					<FileUploader listFiles={this.updateFileList} hideFileUploader={this.hideFileUploader} />
+				</div>
+			</div >
+		)
 	}
 }
 

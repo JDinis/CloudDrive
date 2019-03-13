@@ -1,6 +1,7 @@
-import { GETUSER, EDITUSER, DELUSER } from '../Actions/Types'
+import { GETUSERS, ADDUSER, GETUSER, EDITUSER, DELUSER } from '../Actions/Types'
 
 const initialState = {
+  Users: {},
   User: {},
   Success: false,
   Error: null
@@ -8,6 +9,18 @@ const initialState = {
 
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GETUSERS:
+      return {
+        ...state,
+        Users: action.payload.users,
+        Error: null
+      };
+    case ADDUSER:
+      return {
+        ...state,
+        User: action.payload.user,
+        Error: null
+      };
     case GETUSER:
       return {
         ...state,

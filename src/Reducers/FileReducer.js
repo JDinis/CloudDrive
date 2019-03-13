@@ -1,4 +1,4 @@
-import { ADDFILES, LISTFILES, DELETEFILE } from "../Actions/Types";
+import { ADDFILES, LISTFILES, LISTUSERFILES, DELETEUSERFILE, DELETEFILE } from "../Actions/Types";
 
 const initialState = {
     Files: [],
@@ -15,6 +15,17 @@ export const FileReducer = (state = initialState, action) => {
                 Error: action.payload.Error
             };
         case DELETEFILE:
+            return {
+                ...state,
+                Success: action.payload.success
+            };
+        case LISTUSERFILES:
+            return {
+                ...state,
+                Files: action.payload.files,
+                Error: action.payload.Error
+            };
+        case DELETEUSERFILE:
             return {
                 ...state,
                 Success: action.payload.success

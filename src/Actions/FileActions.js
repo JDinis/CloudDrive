@@ -1,4 +1,4 @@
-import { ADDFILES, LISTFILES, DELETEFILE } from './Types'
+import { ADDFILES, LISTFILES, DELETEUSERFILE, LISTUSERFILES, DELETEFILE } from './Types'
 import axios from 'axios';
 
 export const listFiles = () => dispatch => {
@@ -7,6 +7,27 @@ export const listFiles = () => dispatch => {
             dispatch({
                 type: LISTFILES,
                 payload: files.data
+            })
+        });
+}
+
+export const listUsersFiles = (username) => dispatch => {
+    axios.get('files/list/' + username)
+        .then(files => {
+            dispatch({
+                type: LISTUSERFILES,
+                payload: files.data
+            })
+        });
+}
+
+export const deleteUsersFiles = (username, filename, next) => dispatch => {
+    axios.delete('/files/' + username + '/' + filename)
+        .then(files => {
+            dispatch({
+                type: DELETEUSERFILE,
+                payload: files.data,
+                callback: next()
             })
         });
 }
