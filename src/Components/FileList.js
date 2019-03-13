@@ -50,6 +50,9 @@ class FileList extends Component {
 				e.event.stopPropagation();
 		}
 
+		this.props.listFiles();
+		this.forceUpdate();
+
 		var currentTarget = (e.currentTarget !== undefined) ? e.currentTarget : e.props.ref;
 		this.props.deleteFile(ReactDOM.findDOMNode(currentTarget).children[1].innerHTML,
 			() => { this.props.listFiles(); this.forceUpdate(); });
