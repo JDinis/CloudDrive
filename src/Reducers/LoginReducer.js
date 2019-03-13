@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SIGNUP, GETUSER } from '../Actions/Types'
+import { LOGIN, LOGOUT, SIGNUP, ISLOGGED } from '../Actions/Types'
 
 const initialState = {
   User: {},
@@ -31,11 +31,10 @@ export const LoginReducer = (state = initialState, action) => {
         LoggedIn: false,
         Error: null
       };
-    case GETUSER:
+    case ISLOGGED:
       return {
         ...state,
-        User: action.payload.User,
-        Error: null
+        LoggedIn: action.payload.isLoggedIn
       };
     default:
       return state;

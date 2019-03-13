@@ -1,34 +1,28 @@
-import { LOGIN, LOGOUT, SIGNUP } from '../Actions/Types'
+import { GETUSER, EDITUSER, DELUSER } from '../Actions/Types'
 
 const initialState = {
   User: {},
-  LoggedIn: false,
+  Success: false,
   Error: null
 };
 
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN:
-      action.callback()
+    case GETUSER:
       return {
         ...state,
-        User: action.payload.User,
-        LoggedIn: action.payload.Error.err === null ? true : false,
-        Error: action.payload.Error.err !== null ? action.payload.Error : null
-      };
-    case SIGNUP:
-      action.callback()
-      return {
-        ...state,
-        User: action.payload.User,
-        LoggedIn: true,
+        User: action.payload.user,
         Error: null
       };
-    case LOGOUT:
+    case EDITUSER:
       return {
         ...state,
-        User: null,
-        LoggedIn: false,
+        Success: action.payload.success,
+      };
+    case DELUSER:
+      return {
+        ...state,
+        Success: action.payload.success,
         Error: null
       };
     default:

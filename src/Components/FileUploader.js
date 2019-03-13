@@ -25,7 +25,7 @@ class FileUploader extends Component {
     showFiles = function (files) {
         var $input = $("#formUp").find('input[type="file"]'),
             $label = $("#formUp").find('label');
-        $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
+        $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files.name);
     };
 
     handleDragLeave(event) {
@@ -47,6 +47,14 @@ class FileUploader extends Component {
 
     handleDragStart(event) {
         this.handleEvent(event);
+
+        if (event !== undefined && event.dataTransfer !== undefined && event.dataTransfer.files.length > 0) {
+            var files = event.dataTransfer.files;
+            this.showFiles(files);
+        }
+
+        this.props.listFiles();
+
         $("#formUp").addClass('is-dragover');
     }
 
@@ -82,13 +90,16 @@ class FileUploader extends Component {
             if (res.data.success) {
                 $("#formUp").addClass('is-uploading').removeClass('is-error');
                 $("#formUp").find('label').text('File Uploaded Successfully');
-            } else {
-                window.location.assign('/logout');
+                this.props.listFiles();
+                this.props.hideFileUploader();
+                $("#formUp").removeClass('is-uploading');
+                $("#formUp").find('label').text('');
             }
         },
             {}, (err) => {
                 $("#formUp").removeClass('is-uploading').addClass('is-error');
                 console.log('Error: ' + err);
+                this.props.listFiles();
             })
     }
 
@@ -102,13 +113,19 @@ class FileUploader extends Component {
 
     handleFiles(event) {
         this.handleEvent(event);
+
+        if (event.dataTransfer.files) {
+            var files = event.dataTransfer.files;
+            this.showFiles(files);
+        }
+
         $("#formUp").addClass('is-dragover');
     }
 
     render() {
         return (
             <div style={{ flex: '1 1 auto', flexFlow: 'column' }}>
-                <form id="formUp" className="box has-advanced-upload" encType="multipart/form-data" method="POST" action="/files/upload" >
+                <form id="formUp" className="box has-advanced-upload" encType="multipart/form-data" method="POST" action="/files/upload" target="self" >
                     <center display="none">
                         <div className="box__input">
                             <input className="box__file" data-multiple-caption="{count} files selected" style={{ flex: 1, opacity: 0, width: "100%", height: "65vh" }}

@@ -23,8 +23,8 @@ Logout.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-	User: state.Users.User,
-	LoggedIn: state.Users.LoggedIn
+	User: state.Login.User,
+	LoggedIn: state.Login.LoggedIn
 })
 
 export default withRouter(connect(mapStateToProps, { logout })(Logout));

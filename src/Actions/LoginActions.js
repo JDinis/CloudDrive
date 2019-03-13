@@ -1,4 +1,4 @@
-import { LOGOUT, LOGIN, SIGNUP , GETUSER } from './Types'
+import { LOGOUT, LOGIN, SIGNUP, ISLOGGED } from './Types'
 import axios from 'axios';
 
 export const login = (username, password, callback) => dispatch => {
@@ -6,10 +6,10 @@ export const login = (username, password, callback) => dispatch => {
     username: username,
     password: password,
   })
-    .then(user => {
+    .then(response => {
       dispatch({
         type: LOGIN,
-        payload: user.data,
+        payload: response.data,
         callback
       })
     })
@@ -20,10 +20,10 @@ export const signup = (username, password, callback) => dispatch => {
     username: username,
     password: password,
   })
-    .then(user => {
+    .then(response => {
       dispatch({
         type: SIGNUP,
-        payload: user.data,
+        payload: response.data,
         callback
       })
     })
@@ -34,19 +34,20 @@ export const logout = (username, password) => dispatch => {
     username: username,
     password: password,
   })
-    .then(user => {
+    .then(response => {
       dispatch({
         type: LOGOUT
       })
     })
 }
 
-export const getUser = () => dispatch => {
-  axios.post('/Profile')
-    .then(user => {
-      dispatch({
-        type: GETUSER,
-        payload: user.data
-      })
+export const isLogged = (username) => dispatch => {
+  axios.post("/islogged", {
+    username: username
+  }).then(response => {
+    dispatch({
+      type: ISLOGGED,
+      payload: response.data
     })
+  })
 }

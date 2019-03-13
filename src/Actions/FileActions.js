@@ -11,12 +11,13 @@ export const listFiles = () => dispatch => {
         });
 }
 
-export const deleteFile = (filename) => dispatch => {
+export const deleteFile = (filename, next) => dispatch => {
     axios.delete('/files/' + filename)
         .then(files => {
             dispatch({
                 type: DELETEFILE,
-                payload: files.data
+                payload: files.data,
+                callback: next()
             })
         });
 }

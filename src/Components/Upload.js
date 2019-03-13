@@ -7,12 +7,17 @@ import './Styles/Login.css';
 import Footer from './Footer';
 import NavBar from './NavBar';
 import FileUploader from './FileUploader';
+import { isLogged } from '../Actions/LoginActions';
 
 Window.$ = $;
 
 class Uploader extends Component {
+	componentWillMount() {
+		this.props.isLogged(this.props.User.username);
+	}
+
 	render() {
-		if (this.props.User !== undefined && this.props.User !== null && this.props.User.username !== undefined) {
+		if (this.props.LoggedIn) {
 			return (
 				<div className="MainPage">
 					<NavBar />
@@ -21,18 +26,19 @@ class Uploader extends Component {
 				</div>
 			);
 		} else {
-			return (<Redirect to="/" />);
+			return (<Redirect to="/Login" />);
 		}
 	}
 }
 
 Uploader.propTypes = {
+	isLogged: PropTypes.func.isRequired,
 	User: PropTypes.object,
 }
 
 const mapStateToProps = (state) => ({
-	User: state.Users.User,
-	LoggedIn: state.Users.LoggedIn
+	User: state.Login.User,
+	LoggedIn: state.Login.LoggedIn
 })
 
-export default withRouter(connect(mapStateToProps, null)(Uploader));
+export default withRouter(connect(mapStateToProps, { isLogged })(Uploader));

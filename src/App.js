@@ -8,6 +8,7 @@ import { File } from './Routes/File';
 import { UploadRoute } from './Routes/UploadRoute';
 import Login from './Routes/Login';
 import { UserProfile } from './Routes/UserProfile';
+import { EditProfile } from './Routes/EditProfile';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import Error from './Routes/Error';
 import { logout } from './Actions/LoginActions';
@@ -42,6 +43,7 @@ class App extends Component {
               }} />
               <Route path="/File" render={File} />
               <Route path="/Profile" exact render={UserProfile} />
+              <Route path="/Profile/Edit" exact render={EditProfile} />
               <Route path="/Profile/Files" exact render={File} />
               <Route path="/Profile/Upload" exact render={UploadRoute} />
               <Route render={Error} />

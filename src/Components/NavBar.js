@@ -25,7 +25,12 @@ class NavBar extends Component {
                 style: { width: "100%" },
                 title: 'List Files',
                 key: "idElement2"
-            }, "List Files")];
+            }, "List Files"), React.createElement(NavLink, {
+                to: "/Logout", className: 'btn btn-primary btn-block',
+                style: { width: "100%" },
+                title: 'Logout',
+                key: "idElement3"
+            }, "Logout")];
         } else {
             this.Element = [React.createElement(NavLink, {
                 to: "/Login", className: 'button btn btn-primary btn-block',
@@ -78,8 +83,8 @@ NavBar.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    User: state.Users.User,
-    LoggedIn: state.Users.LoggedIn
+    User: state.Login.User,
+    LoggedIn: state.Login.LoggedIn
 })
 
 export default withRouter(connect(mapStateToProps, null)(NavBar));

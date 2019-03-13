@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-import { login, signup } from '../Actions/LoginActions';
+import { login, signup, isLogged } from '../Actions/LoginActions';
 import { Redirect, withRouter } from 'react-router-dom';
 import './Styles/Login.css';
 const loginBackground = require('./Styles/CloudDriveLogin.webp');
@@ -70,7 +70,7 @@ class Login extends Component {
 	handleLogin(event) {
 		event.preventDefault();
 		this.props.login(this.state.username, this.state.password, (obj = this) => {
-			if (obj.props.User !== undefined && (obj.props.Error === undefined || (obj.props.Error !== null && JSON.parse(obj.props.Error).err === null))) {
+			if (obj.props.User !== undefined && (obj.props.Error === undefined || (obj.props.Error !== null && obj.props.Error.err === null))) {
 				obj.setState({ username: obj.state.username, password: obj.state.password, displayError: 'none', Class: obj.state.Class });
 			} else {
 				obj.setState({ username: obj.state.username, password: obj.state.password, displayError: 'initial', Class: obj.state.Class });
@@ -81,7 +81,7 @@ class Login extends Component {
 	handleSignUp(event) {
 		event.preventDefault();
 		this.props.signup(this.state.username, this.state.password, (obj = this) => {
-			if (obj.props.User !== undefined && (obj.props.Error === undefined || (obj.props.Error !== null && JSON.parse(obj.props.Error).err === null))) {
+			if (obj.props.User !== undefined && (obj.props.Error === undefined || (obj.props.Error !== null && obj.props.Error.err === null))) {
 				obj.setState({ username: obj.state.username, password: obj.state.password, displayError: 'none', Class: obj.state.Class });
 			} else {
 				obj.setState({ username: obj.state.username, password: obj.state.password, displayError: 'initial', Class: obj.state.Class });
@@ -132,7 +132,7 @@ class Login extends Component {
 											</form>
 										</div>
 										<div className="RowError">
-											<span id="Error" style={{ display: disp }}>{this.ErrorMsg = (!this.props.LoggedIn && this.props.Error !== null && JSON.parse(this.props.Error).err !== null) ? JSON.parse(this.props.Error).err : ""}&nbsp;&nbsp;&nbsp;<i className="fas fa-times-circle" onClick={this.clickEvt}></i></span>
+											<span id="Error" style={{ display: disp }}>{this.ErrorMsg = (!this.props.LoggedIn && this.props.Error !== null && this.props.Error.err !== null) ? this.props.Error.err : ""}&nbsp;&nbsp;&nbsp;<i className="fas fa-times-circle" onClick={this.clickEvt}></i></span>
 										</div>
 									</div>
 								</div>
@@ -149,17 +149,18 @@ class Login extends Component {
 }
 
 Login.propTypes = {
+	isLogged: PropTypes.func.isRequired,
 	login: PropTypes.func.isRequired,
 	signup: PropTypes.func.isRequired,
 	User: PropTypes.object,
-	LoggedIn: PropTypes.bool,
+	//LoggedIn: PropTypes.bool,
 	Error: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({
-	User: state.Users.User,
-	LoggedIn: state.Users.LoggedIn,
-	Error: state.Users.Error
+	User: state.Login.User,
+	LoggedIn: state.Login.LoggedIn,
+	Error: state.Login.Error
 })
 
-export default withRouter(connect(mapStateToProps, { login, signup })(Login));
+export default withRouter(connect(mapStateToProps, { login, signup, isLogged })(Login));
