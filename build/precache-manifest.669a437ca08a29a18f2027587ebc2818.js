@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e55c35704d17e21d7627",
+    "revision": "0222192694b107552b5c",
     "url": "/CloudDrive/static/css/main.a58c22f5.chunk.css"
   },
   {
-    "revision": "e55c35704d17e21d7627",
-    "url": "/CloudDrive/static/js/main.e55c3570.chunk.js"
+    "revision": "0222192694b107552b5c",
+    "url": "/CloudDrive/static/js/main.02221926.chunk.js"
   },
   {
     "revision": "c2942edffbdc6f4f7bbd",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/CloudDrive/static/media/CloudDriveLogin.3020d085.webp"
   },
   {
-    "revision": "f929d9afa071e0d8b855637588248e9c",
+    "revision": "7ed8ba07d125a7fb9aa266208f49b4a3",
     "url": "/CloudDrive/index.html"
   }
 ];

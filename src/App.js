@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { store } from './store'
-import { persistor } from './store'
-import Home from './Routes/Home';
-import { File } from './Routes/File';
-import { UploadRoute } from './Routes/UploadRoute';
-import Login from './Routes/Login';
-import { UserProfile } from './Routes/UserProfile';
-import { EditProfile } from './Routes/EditProfile';
-import { PersistGate } from 'redux-persist/lib/integration/react';
-import Error from './Routes/Error';
-import { logout } from './Actions/LoginActions';
-import { Redirect } from 'react-router-dom'
-import { LOGOUT, SIGNUP } from './Actions/Types'
-import 'bootstrap';
-import 'filepond/dist/filepond.min.css';
-import Pricing from './Routes/Pricing';
-import AboutUs from './Routes/AboutUs';
-import BackOfficeRoute from './Routes/BackOfficeRoute';
-import ListProfiles from './Components/ListProfiles';
-import ViewProfile from './Routes/ViewProfile';
-import AddUsers from './Components/AddUsers';
-import ListUserFiles from './Components/ListUserFiles';
-import DownloadUsersFiles from './Components/DownloadUsersFiles';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { persistor } from "./store";
+import Home from "./Routes/Home";
+import { File } from "./Routes/File";
+import { UploadRoute } from "./Routes/UploadRoute";
+import Login from "./Routes/Login";
+import { UserProfile } from "./Routes/UserProfile";
+import { EditProfile } from "./Routes/EditProfile";
+import { PersistGate } from "redux-persist/lib/integration/react";
+import Error from "./Routes/Error";
+import { logout } from "./Actions/LoginActions";
+import { Redirect } from "react-router-dom";
+import { LOGOUT, SIGNUP } from "./Actions/Types";
+import "bootstrap";
+import "filepond/dist/filepond.min.css";
+import Pricing from "./Routes/Pricing";
+import AboutUs from "./Routes/AboutUs";
+import BackOfficeRoute from "./Routes/BackOfficeRoute";
+import ListProfiles from "./Components/ListProfiles";
+import ViewProfile from "./Routes/ViewProfile";
+import AddUsers from "./Components/AddUsers";
+import ListUserFiles from "./Components/ListUserFiles";
+import DownloadUsersFiles from "./Components/DownloadUsersFiles";
 
 class App extends Component {
   render() {
@@ -37,16 +37,24 @@ class App extends Component {
               <Route path="/Login" render={Login} />
               <Route path="/Pricing" render={Pricing} />
               <Route path="/AboutUs" render={AboutUs} />
-              <Route path="/Signup" render={() => {
-                store.dispatch({
-                  type: SIGNUP
-                }); return (<Redirect to="/" />);
-              }} />
-              <Route path="/Logout" render={() => {
-                store.dispatch({
-                  type: LOGOUT
-                }); return (<Redirect to="/" />);
-              }} />
+              <Route
+                path="/Signup"
+                render={() => {
+                  store.dispatch({
+                    type: SIGNUP
+                  });
+                  return <Redirect to="/" />;
+                }}
+              />
+              <Route
+                path="/Logout"
+                render={() => {
+                  store.dispatch({
+                    type: LOGOUT
+                  });
+                  return <Redirect to="/" />;
+                }}
+              />
               <Route path="/File" render={File} />
               <Route path="/Profile" exact render={UserProfile} />
               <Route path="/Profile/Edit" exact render={EditProfile} />
@@ -55,7 +63,11 @@ class App extends Component {
               <Route path="/BackOffice" exact render={BackOfficeRoute} />
               <Route path="/ListUsers" exact render={ListProfiles} />
               <Route path="/ListUserFiles" exact render={ListUserFiles} />
-              <Route path="/DownloadUsersFiles" exact render={DownloadUsersFiles} />
+              <Route
+                path="/DownloadUsersFiles"
+                exact
+                render={DownloadUsersFiles}
+              />
               <Route path="/AddUsers" exact render={AddUsers} />
               <Route path="/ViewProfile" exact render={ViewProfile} />
               <Route render={Error} />
